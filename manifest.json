@@ -1,0 +1,12 @@
+{
+  "name": "Khaled Life",
+  "short_name": "Khaled Life",
+  "description": "موقع Khaled Life المستضاف عبر GitHub Pages",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "dir": "rtl",
+  "lang": "ar"
+}
