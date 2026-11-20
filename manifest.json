@@ -1,12 +1,12 @@
 {
-  "name": "Khaled Life",
-  "short_name": "Khaled Life",
-  "description": "موقع Khaled Life المستضاف عبر GitHub Pages",
+  "name": "خالد أحمد",
+  "short_name": "خالد أحمد",
+  "description": "18 عاماً من رحلتي — خالد أحمد",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
   "dir": "rtl",
   "lang": "ar"
 }
