@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Khaled Life | خالد لايف</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+      background: linear-gradient(135deg, #090d16 0%, var(--bg) 55%, #172554 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      line-height: 1.7;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      background: rgba(30, 41, 59, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 20px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #082f49;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.75);
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .note {
+      font-size: 0.88rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+      padding-top: 18px;
+    }
+
+    .note code {
+      color: var(--accent);
+      direction: ltr;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <span class="badge">GitHub Pages Ready</span>
+    <h1>مرحباً بك في Khaled Life</h1>
+    <p>
+      واجهة ويب سريعة ومستضافة مجاناً عبر GitHub Pages للوصول المباشر إلى منصة Khaled Life وتجربة التصفح السلس على الهاتف والكمبيوتر.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="https://khaledlife-dtrx.whacka.app/" target="_blank" rel="noopener noreferrer">
+        الدخول إلى الموقع الرئيسي
+      </a>
+      <button class="btn btn-secondary" id="installBtn" type="button" hidden>
+        تثبيت كتطبيق
+      </button>
+    </div>
+
+    <div class="note">
+      الرابط الأساسي المرتبط: <code>https://khaledlife-dtrx.whacka.app/</code>
+    </div>
+  </main>
+
+  <script>
+    let deferredPrompt;
+    const installBtn = document.getElementById("installBtn");
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.hidden = false;
+    });
+
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.hidden = true;
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
